@@ -1,5 +1,12 @@
 import streamlit as st
 import pickle
+import requests
+import pickle
+
+url = "https://github.com/Peilin-CodeVersion/Stroke_Prediction/main/svm_model.pkl"
+response = requests.get(url)
+model = pickle.loads(response.content)
+
 
 # Load the trained SVM model
 with open("svm_model.pkl", "rb") as file:
