@@ -1,7 +1,6 @@
 import streamlit as st
 import pickle
 import requests
-import pickle
 
 # URL of the raw SVM model file on GitHub
 url = "https://raw.githubusercontent.com/Peilin-CodeVersion/Stroke_Prediction/main/svm_model.pkl"
@@ -9,9 +8,16 @@ url = "https://raw.githubusercontent.com/Peilin-CodeVersion/Stroke_Prediction/ma
 # Fetch the SVM model file
 response = requests.get(url)
 
-# Load the SVM model from the response content
-model = pickle.loads(response.content)
+# Save the content to a file
+with open("svm_model.pkl", "wb") as file:
+    file.write(response.content)
 
+# Load the SVM model from the file
+with open("svm_model.pkl", "rb") as file:
+    model = pickle.load(file)
+    
+    
+    
 def main():
     # Set the page title
     st.title("Stroke Prediction")
