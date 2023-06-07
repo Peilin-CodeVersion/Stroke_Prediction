@@ -3,21 +3,21 @@ import pickle
 import requests
 import pickle
 
-url = "https://github.com/Peilin-CodeVersion/Stroke_Prediction/main/svm_model.pkl"
+# URL of the raw SVM model file on GitHub
+url = "https://raw.githubusercontent.com/Peilin-CodeVersion/Stroke_Prediction/main/svm_model.pkl"
+
+# Fetch the SVM model file
 response = requests.get(url)
+
+# Load the SVM model from the response content
 model = pickle.loads(response.content)
-
-
-# Load the trained SVM model
-with open("svm_model.pkl", "rb") as file:
-    svm_model = pickle.load(file)
 
 def main():
     # Set the page title
     st.title("Stroke Prediction")
 
     # Load the trained SVM model
-    model = pickle.load(open('svm_model.pkl', 'rb'))
+    # model = pickle.load(open('svm_model.pkl', 'rb'))
 
     # Retrieve the feature names from the training data
     feature_names = ['gender', 'age', 'hypertension', 'heart_disease', 'ever_married', 
