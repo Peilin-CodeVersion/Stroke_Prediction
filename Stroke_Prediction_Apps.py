@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import scikit_learn.model_selection
-import scikit_learn.model_selection import train_test_split
+from scikit_learn.model_selection import train_test_split
 from sklearn.svm import SVC
 
 
