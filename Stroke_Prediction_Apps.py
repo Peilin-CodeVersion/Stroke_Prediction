@@ -24,7 +24,7 @@ Residence_type_mapping = {"Rural": 0, "Urban": 1}
 smoking_status_mapping = {"Unknown": 0, "formerly smoked": 1, "never smoked": 2, "smokes": 3}
 
 def preprocess_input(gender, age, hypertension, heart_disease, ever_married, work_type, Residence_type,
-                     avg_glucose_level, bmi, smoking_status)
+                     avg_glucose_level, bmi, smoking_status):
     gender = gender_mapping[gender]
     hypertension = hypertension_mapping[hypertension]
     heart_disease = heart_disease_mapping[heart_disease]
