@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
-import streamlit_lottie import st_lottie
+form streamlit_lottie import st_lottie
 
 cleaned_data = pd.read_csv("Stroke_cleaned_dataset.csv")
 
