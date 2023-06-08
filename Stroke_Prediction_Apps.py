@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
-from streamlit_lottie import st_lottie
 
 cleaned_data = pd.read_csv("Stroke_cleaned_dataset.csv")
 
@@ -37,8 +36,6 @@ def preprocess_input(gender, age, hypertension, heart_disease, ever_married, wor
                      avg_glucose_level, bmi, smoking_status]).reshape(1, -1)
 
 def main():
-    # Load and display the Lottie animation
-    lottie_coding = load_lottieurl("https://assets5.lottiefiles.com/packages/lf20_yfk4tei3.json")
     
     st.title("Stroke Risk Prediction")
 
