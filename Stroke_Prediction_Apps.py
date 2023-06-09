@@ -14,32 +14,12 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 model = SVC()
 model.fit(X_train, y_train)
 
-gender_mapping = {"Female": 0, "Male": 1}
-hypertension_mapping = {"No": 0, "Yes": 1}
-heart_disease_mapping = {"No": 0, "Yes": 1}
-ever_married_mapping = {"No": 0, "Yes": 1}
-work_type_mapping = {"Govt_job": 0, "Never_worked": 1, "Private": 2, "Self-employed": 3, "children": 4}
-Residence_type_mapping = {"Rural": 0, "Urban": 1}
-smoking_status_mapping = {"Unknown": 0, "formerly smoked": 1, "never smoked": 2, "smokes": 3}
-
-def preprocess_input(gender, age, hypertension, heart_disease, ever_married, work_type, Residence_type,
-                     avg_glucose_level, bmi, smoking_status):
-    gender = gender_mapping[gender]
-    hypertension = hypertension_mapping[hypertension]
-    heart_disease = heart_disease_mapping[heart_disease]
-    ever_married = ever_married_mapping[ever_married]
-    work_type = work_type_mapping[work_type]
-    Residence_type = Residence_type_mapping[Residence_type]
-    smoking_status = smoking_status_mapping[smoking_status]
-
-    return np.array([gender, age, hypertension, heart_disease, ever_married, work_type, Residence_type,
-                     avg_glucose_level, bmi, smoking_status]).reshape(1, -1)
-
+# Create the Streamlit app
 def main():
-    
+    # Set the app title
     st.title("Stroke Risk Prediction")
 
-    # User input
+    # Define the user inputs
     gender = st.selectbox("Gender", ("Female", "Male"))
     age = st.slider("Age", 0, 100, 50)
     hypertension = st.selectbox("Hypertension", ("No", "Yes"))
@@ -51,19 +31,39 @@ def main():
     bmi = st.number_input("BMI")
     smoking_status = st.selectbox("Smoking Status", ("Unknown", "formerly smoked", "never smoked", "smokes"))
 
-    if st.button("Predict"):
-        # Preprocess input
-        input_features = preprocess_input(gender, age, hypertension, heart_disease, ever_married, work_type,
-                                          Residence_type, avg_glucose_level, bmi, smoking_status)
+    # Save the user inputs into a dataset
+    user_data = pd.DataFrame({
+        "gender": [gender],
+        "age": [age],
+        "hypertension": [hypertension],
+        "heart_disease": [heart_disease],
+        "ever_married": [ever_married],
+        "work_type": [work_type],
+        "Residence_type": [Residence_type],
+        "avg_glucose_level": [avg_glucose_level],
+        "bmi": [bmi],
+        "smoking_status": [smoking_status]
+    })
 
-        # Make prediction
-        prediction = model.predict(input_features)
+    # Encode the user dataset
+    user_data["gender"] = user_data["gender"].map({"Female": 0, "Male": 1}).astype(int)
+    user_data["hypertension"] = user_data["hypertension"].map({"No": 0, "Yes": 1}).astype(int)
+    user_data["heart_disease"] = user_data["heart_disease"].map({"No": 0, "Yes": 1}).astype(int)
+    user_data["ever_married"] = user_data["ever_married"].map({"No": 0, "Yes": 1}).astype(int)
+    user_data["work_type"] = user_data["work_type"].map({"Govt_job": 0, "Never_worked": 1, "Private": 2, "Self-employed": 3, "children": 4}).astype(int)
+    user_data["Residence_type"] = user_data["Residence_type"].map({"Rural": 0, "Urban": 1}).astype(int)
+    user_data["smoking_status"] = user_data["smoking_status"].map({"Unknown": 0, "formerly smoked": 1, "never smoked": 2, "smokes": 3}).astype(int)
 
-        # Display prediction
-        if prediction == 0:
-            st.write("Low stroke risk")
-        else:
-            st.write("High stroke risk")
+    # Use the dataset to predict the stroke using the trained SVM model
+    stroke_prediction = model.predict(user_data)
+
+    # Show the risk of getting a stroke
+    st.subheader("Stroke Risk Prediction Result:")
+    if stroke_prediction[0] == 0:
+        st.write("Low stroke risk")
+    else:
+        st.write("High stroke risk")
 
 if __name__ == "__main__":
     main()
+
