@@ -63,7 +63,7 @@ def main():
         user_data["smoking_status"] = user_data["smoking_status"].map({"Unknown": 0, "formerly smoked": 1, "never smoked": 2, "smokes": 3}).astype(int)
        
 
-        Use the dataset to predict the stroke using the trained SVM model
+        # Use the dataset to predict the stroke using the trained SVM model
         stroke_prediction = model.predict(user_data)
         
 #         # Apply additional conditions to change prediction to high stroke risk
