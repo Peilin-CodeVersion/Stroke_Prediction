@@ -6,7 +6,7 @@ from sklearn.svm import SVC
 from PIL import Image
 
 # cleaned_data = pd.read_csv("Stroke_cleaned_dataset.csv")
-csv_url = "https://raw.githubusercontent.com/Peilin-CodeVersion/Stroke_Prediction/blob/main/Stroke_cleaned_dataset.csv"  
+csv_url = "https://raw.githubusercontent.com/Peilin-CodeVersion/Stroke_Prediction/main/Stroke_cleaned_dataset.csv"  
 df = pd.read_csv(csv_url)
 
 X = cleaned_data.drop("stroke", axis=1)
