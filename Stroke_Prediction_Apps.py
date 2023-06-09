@@ -16,8 +16,11 @@ model.fit(X_train, y_train)
 
 # Create the Streamlit app
 def main():
-    # Set the app title
-    st.title("Stroke Risk Prediction")
+    # Set the app title and header image
+    header_image_url = "https://github.com/Peilin-CodeVersion/Stroke_Prediction/blob/main/Stroke_Risk_Predictor.jpg" # Replace with the URL to your header image
+
+    # Display the header image
+    st.image(header_image_url, use_column_width=True)
 
     # Define the user inputs
     gender = st.selectbox("Gender", ("Female", "Male"))
