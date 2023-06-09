@@ -66,19 +66,19 @@ def main():
         # Use the dataset to predict the stroke using the trained SVM model
         stroke_prediction = model.predict(user_data)
         
-#         # Apply additional conditions to change prediction to high stroke risk
-#         if bmi > 26 and ever_married == "Yes" and hypertension == "Yes":
-#             stroke_prediction[0] = 1
-#         elif age >= 50 and ever_married == "Yes" and hypertension == "Yes":
-#             stroke_prediction[0] = 1
-#         elif ever_married == "Yes" and hypertension == "Yes" and smoking_status != "smokes":
-#             stroke_prediction[0] = 1
-#         elif ever_married == "Yes" and hypertension == "Yes" and smoking_status != "formerly smoked":
-#             stroke_prediction[0] = 1
-#         elif hypertension == "Yes" and heart_disease == "Yes":
-#             stroke_prediction[0] = 1
-#         elif hypertension == "Yes" and ever_married == "Yes" and age >= 50:
-#             stroke_prediction[0] = 1
+        # Apply additional conditions to change prediction to high stroke risk
+        if bmi > 26 and ever_married == "Yes" and hypertension == "Yes":
+            stroke_prediction[0] = 1
+        elif age >= 50 and ever_married == "Yes" and hypertension == "Yes":
+            stroke_prediction[0] = 1
+        elif ever_married == "Yes" and hypertension == "Yes" and smoking_status != "smokes":
+            stroke_prediction[0] = 1
+        elif ever_married == "Yes" and hypertension == "Yes" and smoking_status != "formerly smoked":
+            stroke_prediction[0] = 1
+        elif hypertension == "Yes" and heart_disease == "Yes":
+            stroke_prediction[0] = 1
+        elif hypertension == "Yes" and ever_married == "Yes" and age >= 50:
+            stroke_prediction[0] = 1
 
         # Show the risk of getting a stroke
         st.subheader("Stroke Risk Prediction Result:")
