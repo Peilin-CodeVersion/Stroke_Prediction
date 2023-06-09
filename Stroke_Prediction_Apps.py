@@ -55,9 +55,22 @@ def main():
         user_data["work_type"] = user_data["work_type"].map({"Govt_job": 0, "Never_worked": 1, "Private": 2, "Self-employed": 3, "children": 4}).astype(int)
         user_data["Residence_type"] = user_data["Residence_type"].map({"Rural": 0, "Urban": 1}).astype(int)
         user_data["smoking_status"] = user_data["smoking_status"].map({"Unknown": 0, "formerly smoked": 1, "never smoked": 2, "smokes": 3}).astype(int)
+       
 
         # Use the dataset to predict the stroke using the trained SVM model
         stroke_prediction = model.predict(user_data)
+        
+        # Apply additional conditions to change prediction to high stroke risk
+        if bmi > 26 and ever_married == "Yes" and hypertension == "Yes":
+            stroke_prediction = 1
+        elif age >= 50 and ever_married == "Yes" and hypertension == "Yes":
+            stroke_prediction = 1
+        elif ever_married == "Yes" and hypertension == "Yes" and smoking_status != "Unknown":
+            stroke_prediction = 1
+        elif hypertension == "Yes" and heart_disease == "Yes":
+            stroke_prediction = 1
+        elif hypertension == "Yes" and ever_married == "Yes" and age >= 50:
+            stroke_prediction = 1
 
         # Show the risk of getting a stroke
         st.subheader("Stroke Risk Prediction Result:")
