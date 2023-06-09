@@ -83,9 +83,9 @@ def main():
         # Show the risk of getting a stroke
         st.subheader("Stroke Risk Prediction Result:")
         if stroke_prediction[0] == 0:
-            st.write("Low stroke risk")
+            st.write("Congrats, You have a lower risk of experiencing a stroke ")
         else:
-            st.write("High stroke risk")
+            st.write("Hhere is a higher risk of experiencing a stroke. We recommend regular body check-ups")
 
 if __name__ == "__main__":
     main()
