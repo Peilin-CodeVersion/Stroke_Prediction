@@ -69,7 +69,7 @@ def main():
             stroke_prediction[0] = 1
         elif ever_married == "1" and hypertension == "1" and smoking_status != "1":
             stroke_prediction[0] = 1
-        elif hypertension == "1" and heart_disease == "1":
+        elif hypertension == "Yes" and heart_disease == "Yes":
             stroke_prediction[0] = 1
         elif hypertension == "1" and ever_married == "1" and age >= 50:
             stroke_prediction[0] = 1
