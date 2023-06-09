@@ -61,15 +61,17 @@ def main():
         stroke_prediction = model.predict(user_data)
         
         # Apply additional conditions to change prediction to high stroke risk
-        if bmi > 26 and ever_married == "Yes" and hypertension == "Yes":
+        if bmi > 26 and ever_married == "1" and hypertension == "1":
             stroke_prediction = 1
-        elif age >= 50 and ever_married == "Yes" and hypertension == "Yes":
+        elif age >= 50 and ever_married == "1" and hypertension == "1":
             stroke_prediction = 1
-        elif ever_married == "Yes" and hypertension == "Yes" and smoking_status != "Unknown":
+        elif ever_married == "1" and hypertension == "1" and smoking_status != "3":
             stroke_prediction = 1
-        elif hypertension == "Yes" and heart_disease == "Yes":
+        elif ever_married == "1" and hypertension == "1" and smoking_status != "1":
             stroke_prediction = 1
-        elif hypertension == "Yes" and ever_married == "Yes" and age >= 50:
+        elif hypertension == "1" and heart_disease == "1":
+            stroke_prediction = 1
+        elif hypertension == "1" and ever_married == "1" and age >= 50:
             stroke_prediction = 1
 
         # Show the risk of getting a stroke
