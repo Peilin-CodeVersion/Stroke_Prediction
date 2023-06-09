@@ -5,7 +5,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from PIL import Image
 
-cleaned_data = pd.read_csv("Stroke_cleaned_dataset.csv")
+# cleaned_data = pd.read_csv("Stroke_cleaned_dataset.csv")
+csv_url = "https://raw.githubusercontent.com/Peilin-CodeVersion/Stroke_Prediction/blob/main/Stroke_cleaned_dataset.csv"  
+df = pd.read_csv(csv_url)
 
 X = cleaned_data.drop("stroke", axis=1)
 y = cleaned_data["stroke"]
@@ -18,7 +20,7 @@ model.fit(X_train, y_train)
 # Create the Streamlit app
 def main():
     # Set the app title and header image
-    header_image_url = "https://raw.githubusercontent.com/Peilin-CodeVersion/Stroke_Prediction/main/Stroke_Risk_Predictor.jpg" # Replace with the URL to your header image
+    header_image_url = "https://raw.githubusercontent.com/Peilin-CodeVersion/Stroke_Prediction/main/Stroke_Risk_Predictor.jpg" 
 
     # Display the header image
     st.image(header_image_url, use_column_width=True)
@@ -62,21 +64,21 @@ def main():
        
 
         # Use the dataset to predict the stroke using the trained SVM model
-        stroke_prediction = model.predict(user_data)
+#         stroke_prediction = model.predict(user_data)
         
-        # Apply additional conditions to change prediction to high stroke risk
-        if bmi > 26 and ever_married == "Yes" and hypertension == "Yes":
-            stroke_prediction[0] = 1
-        elif age >= 50 and ever_married == "Yes" and hypertension == "Yes":
-            stroke_prediction[0] = 1
-        elif ever_married == "Yes" and hypertension == "Yes" and smoking_status != "smokes":
-            stroke_prediction[0] = 1
-        elif ever_married == "Yes" and hypertension == "Yes" and smoking_status != "formerly smoked":
-            stroke_prediction[0] = 1
-        elif hypertension == "Yes" and heart_disease == "Yes":
-            stroke_prediction[0] = 1
-        elif hypertension == "Yes" and ever_married == "Yes" and age >= 50:
-            stroke_prediction[0] = 1
+#         # Apply additional conditions to change prediction to high stroke risk
+#         if bmi > 26 and ever_married == "Yes" and hypertension == "Yes":
+#             stroke_prediction[0] = 1
+#         elif age >= 50 and ever_married == "Yes" and hypertension == "Yes":
+#             stroke_prediction[0] = 1
+#         elif ever_married == "Yes" and hypertension == "Yes" and smoking_status != "smokes":
+#             stroke_prediction[0] = 1
+#         elif ever_married == "Yes" and hypertension == "Yes" and smoking_status != "formerly smoked":
+#             stroke_prediction[0] = 1
+#         elif hypertension == "Yes" and heart_disease == "Yes":
+#             stroke_prediction[0] = 1
+#         elif hypertension == "Yes" and ever_married == "Yes" and age >= 50:
+#             stroke_prediction[0] = 1
 
         # Show the risk of getting a stroke
         st.subheader("Stroke Risk Prediction Result:")
