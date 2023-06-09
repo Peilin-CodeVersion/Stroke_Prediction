@@ -17,21 +17,6 @@ model.fit(X_train, y_train)
 
 # Create the Streamlit app
 def main():
-    # Set the background color
-    background_color = "#9E3AC3"  # Replace with your desired background color in HEX format
-
-    # Apply the background color
-    st.markdown(
-        f"""
-        <style>
-        .reportview-container {{
-            background-color: {background_color};
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-    
     # Set the app title and header image
     header_image_url = "https://raw.githubusercontent.com/Peilin-CodeVersion/Stroke_Prediction/main/Stroke_Risk_Predictor.jpg" # Replace with the URL to your header image
 
