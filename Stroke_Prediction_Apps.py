@@ -69,6 +69,8 @@ def main():
         # Apply additional conditions to change prediction to high stroke risk
         if bmi > 26 and ever_married == "Yes" and hypertension == "Yes" and age > 10 and avg_glucose_level >50 and bmi >5 :
             stroke_prediction[0] = 1
+        elif age >= 70 and avg_glucose_level >50 and bmi >5:
+            stroke_prediction[0] = 1
         elif age >= 50 and ever_married == "Yes" and hypertension == "Yes" and age > 10 and avg_glucose_level >50 and bmi >5 :
             stroke_prediction[0] = 1
         elif ever_married == "Yes" and hypertension == "Yes" and smoking_status != "smokes" and age > 10 and avg_glucose_level >50 and bmi >5 :
